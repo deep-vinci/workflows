@@ -13,4 +13,6 @@ jobs:
     steps:
       - name: running echo cmd
         run: echo $HOME
+      
+      - run: mkdir demo_file
       - run: ls
