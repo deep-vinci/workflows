@@ -1,0 +1,24 @@
+name: git push demo
+run-name: demo the gi push using github actions
+
+on: push
+  # schedule:
+  #   - cron: '* * * *'
+
+jobs:
+  Cron-Job-Demo:
+    name: demo the git push
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: checkout 
+        run: actions/checkout@v2
+      
+      - name: fetch the repo info
+        run: curl https://api.github.com/users/deep-vinci/repos > prefetch_data.json
+
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Automated update: $(date)"
+          branch: main
